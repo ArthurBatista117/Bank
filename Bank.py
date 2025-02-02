@@ -3,7 +3,19 @@ import random
 import re
 
 class Bank:
+    """
+        Class that represent a bank, simulating create of accounts, deposits and withdraw.
+
+        Attributes:
+            email (str): Email of user.
+            n_account (str): Number of account.
+            password (str): Password of account.
+            _balance (float): balance of account.
+        """
     def __init__(self, email, n_account='12345678', password='11qq11', balance=0):
+        """
+            Initializes one object Bank with email, number of account, password and initial balance.
+        """
         self.email = email
         self.n_account = n_account
         self.password = password
@@ -51,6 +63,14 @@ class Bank:
 
     @classmethod
     def create(cls):
+        """
+               Create a new account.
+
+               Solicit email, generate one number of account random and define one password.
+
+               Returns:
+                   Bank: One new object of class Bank.
+               """
         email = input('Write your best email: ')
         with open('accounts.csv', 'r') as file:
             reader = csv.reader(file)
@@ -69,6 +89,9 @@ class Bank:
         return cls(email, num_account, password)
 
     def check(self):
+        """
+        Checks if a account exist and permit deposit or withdraw.
+        """
         with open('accounts.csv', 'r', newline='') as file:
             reader = csv.reader(file)
             rows = []
@@ -104,6 +127,11 @@ class Bank:
 
 
     def append(self):
+        """
+        Add one account in database (CSV file), deleting duplicates.
+
+        Update balance.
+        """
         with open('accounts.csv', "r", newline="", encoding="utf-8") as csvfile:
             reader = list(csv.reader(csvfile))
             header = reader[0]
@@ -128,10 +156,19 @@ class Bank:
             writer.writerow([self.email, self.n_account, self.password, self._balance + balance])
 
     def deposit(self, n):
+        """
+            Add one value in balance of account.
+
+            Args:
+                n (float): Amount to be deposited.
+        """
         self._balance += n
 
     def withdraw(self, n):
-        self._balance -= n
+        """
+                Realize one withdraw in account, subtracting one value of balance.
 
-    def __str__(self):
-        return f'Number of account: {self._n_account}\nBalance: {self._balance}'
+                Args:
+                    n (float): Amount to be drawn.
+                """
+        self._balance -= n
