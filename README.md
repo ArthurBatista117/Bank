@@ -24,8 +24,8 @@ Instalação
 
 Para clonar o repositório e rodar o projeto, execute os seguintes comandos:
 
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DO_PROJETO>
+git clone <https://github.com/ArthurBatista117/Bank>
+cd <Bank>
 python main.py
 
 Uso
