@@ -76,9 +76,9 @@ class Bank:
             for row in reader:
                 if self.email in row:
                     print('This account has exist')
-                    r = input('You want a deposit here? (D) or a windrow(W)? ')
+                    r = input('You want a deposit here? (D) or a withdraw(W)? ')
                     while r.upper() not in 'DW':
-                        r = input('You want a deposit here?(D) or a windrow(W)? ')
+                        r = input('You want a deposit here?(D) or a withdraw(W)? ')
                     if r.upper() == 'D':
                         value = float(input('Value: '))
                         balance = float(row[3])
@@ -91,7 +91,7 @@ class Bank:
                         if value > balance:
                             raise ValueError('Balance insufficient')
                         dep = value - balance
-                        self.windrow(dep)
+                        self.withdraw(dep)
                         new_row = [self.email, row[1], self.password, self._balance]
                 else:
                     rows.append(row)
@@ -130,7 +130,7 @@ class Bank:
     def deposit(self, n):
         self._balance += n
 
-    def windrow(self, n):
+    def withdraw(self, n):
         self._balance -= n
 
     def __str__(self):
